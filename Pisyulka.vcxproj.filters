@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Resources">
+      <UniqueIdentifier>{fb2d6bd1-62d2-4aaa-a0f6-cbea41b25585}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shapes">
+      <UniqueIdentifier>{4ab83f57-e45d-460d-915d-e75bd9880316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes">
+      <UniqueIdentifier>{893c7930-8c9f-4d01-8d42-788a364e5d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Colors">
+      <UniqueIdentifier>{b12117d8-129c-4720-8d13-66629ae5d5f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ShapeEditor">
+      <UniqueIdentifier>{501cd7e1-268c-49a9-9404-b3c4ce3a136b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ShapeEditors">
+      <UniqueIdentifier>{fa41e0ac-62b4-4e78-8f58-cb000a3ca495}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pisyulka.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="line.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="point.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="rectangle.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="ellipse.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="editor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shapeEditor.h">
+      <Filter>Header Files\ShapeEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="pointEditor.h">
+      <Filter>Header Files\ShapeEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="lineEditor.h">
+      <Filter>Header Files\ShapeEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="rectangleEditor.h">
+      <Filter>Header Files\ShapeEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="ellipseEditor.h">
+      <Filter>Header Files\ShapeEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="AllShapesEditors.h">
+      <Filter>Header Files\ShapeEditor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Pisyulka.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ellipse.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="point.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="shape.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="shapeEditor.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="pointEditor.cpp">
+      <Filter>Source Files\ShapeEditors</Filter>
+    </ClCompile>
+    <ClCompile Include="lineEditor.cpp">
+      <Filter>Source Files\ShapeEditors</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangleEditor.cpp">
+      <Filter>Source Files\ShapeEditors</Filter>
+    </ClCompile>
+    <ClCompile Include="ellipseEditor.cpp">
+      <Filter>Source Files\ShapeEditors</Filter>
+    </ClCompile>
+    <ClCompile Include="line.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Pisyulka.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Pisyulka.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
