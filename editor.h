@@ -9,4 +9,5 @@ public:
 	virtual void OnLBtnUp(HWND hWnd) {};
 	virtual void OnMouseMove(HWND hWnd) {};
 	virtual void OnPaint(HWND hWnd) {};
+	virtual void SaveShape(HWND hWnd) {};
 };

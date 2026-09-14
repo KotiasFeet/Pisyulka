@@ -3,24 +3,31 @@
 #include "editor.h"
 #include "shape.h"
 #include "resource.h"
+#include "rubberBending.h"
 
 class ShapeEditor : public Editor
 {
 protected:
-	int currentShapeID_ = ID_SHAPE_POINT;
-	static Shape* pcshape_[MY_SHAPE_ARRAY_SIZE];
+    int currentShapeID_ = ID_SHAPE_POINT;
+    static Shape* pcshape_[MY_SHAPE_ARRAY_SIZE];
+
+    int _currentIndex = -1;
+    int _startX = 0;
+    int _startY = 0;
+
+    virtual Shape* CreateShape(long x1, long y1, long x2, long y2) = 0;
+
 public:
-	//ShapeEditor(void);
+    static void ClearAllShapes();
 
-	void SetCurrentShapeID(int shapeID) { currentShapeID_ = shapeID; }
+    void SetCurrentShapeID(int shapeID) { currentShapeID_ = shapeID; }
+    bool GetMousePos(HWND hWnd, POINT& pt);
 
-	//virtual void OnLBtnDown(HWND hWnd);
-	//virtual void OnLBtnUp(HWND hWnd);
-	//virtual void OnMouseMove(HWND hWnd);
+    virtual void SaveShape(HWND hWnd);
 
-	//void OnPaint(HWND hWnd);
-
-	static void ClearAllShapes();
-
-	void OnInitMenuPopup(HWND hWnd, WPARAM wParam);
+    void OnLBtnDown(HWND hWnd) override;
+    void OnLBtnUp(HWND hWnd) override;
+    void OnMouseMove(HWND hWnd) override;
+    void OnPaint(HWND hWnd) override;
+    void OnInitMenuPopup(HWND hWnd, WPARAM wParam);
 };

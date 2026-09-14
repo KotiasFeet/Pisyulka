@@ -124,6 +124,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AllShapesEditors.h" />
+    <ClInclude Include="color.h" />
+    <ClInclude Include="colorEnums.h" />
     <ClInclude Include="editor.h" />
     <ClInclude Include="ellipse.h" />
     <ClInclude Include="ellipseEditor.h" />
@@ -136,11 +138,15 @@
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="rectangleEditor.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RGBColor.h" />
+    <ClInclude Include="rubberBandingEnums.h" />
+    <ClInclude Include="rubberBending.h" />
     <ClInclude Include="shape.h" />
     <ClInclude Include="shapeEditor.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="color.cpp" />
     <ClCompile Include="ellipse.cpp" />
     <ClCompile Include="ellipseEditor.cpp" />
     <ClCompile Include="line.cpp" />
@@ -148,7 +154,9 @@
     <ClCompile Include="Pisyulka.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="pointEditor.cpp" />
+    <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="rectangleEditor.cpp" />
+    <ClCompile Include="rubberBending.cpp" />
     <ClCompile Include="shape.cpp" />
     <ClCompile Include="shapeEditor.cpp" />
   </ItemGroup>

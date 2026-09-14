@@ -4,7 +4,9 @@ Shape::Shape()
 	: x1_(0)
 	, y1_(0)
 	, x2_(0)
-	, y2_(0) 
+	, y2_(0)
+	, fillingColor_(Palette::Black)
+	, outlineColor_(Palette::Black)
 {}
 
 void Shape::Set(long x1, long y1, long x2, long y2)

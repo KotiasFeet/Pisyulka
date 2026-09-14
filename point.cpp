@@ -2,11 +2,24 @@
 
 void PointShape::Show(HDC hdc)
 {
-	SetPixel(hdc, x1_, y1_, RGB(0, 0, 0));
-}
+    int radius = 5;
 
-//void PointShape::Show(HDC hdc)
-//{
-//    const int r = 2; // radius of visible point
-//    Ellipse(hdc, x1_ - r, y1_ - r, x1_ + r, y1_ + r);
-//}
+    RGBColor fc = GetFillingColor();
+
+	// If the color is -1, it means transparent, so we use NULL_BRUSH  
+    HBRUSH hBrush = (fc.r != -1)
+        ? CreateSolidBrush(RGB(fc.r, fc.g, fc.b))
+        : (HBRUSH)GetStockObject(NULL_BRUSH);
+
+    HPEN hPen = (HPEN)GetStockObject(NULL_PEN);
+
+    HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBrush);
+    HPEN hOldPen = (HPEN)SelectObject(hdc, hPen);
+
+    Ellipse(hdc, x1_ - radius, y1_ - radius, x1_ + radius, y1_ + radius);
+
+    SelectObject(hdc, hOldBrush);
+    SelectObject(hdc, hOldPen);
+
+    if (fc.r != -1) DeleteObject(hBrush);
+}

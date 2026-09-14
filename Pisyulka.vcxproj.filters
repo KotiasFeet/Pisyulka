@@ -22,14 +22,20 @@
     <Filter Include="Source Files\Shapes">
       <UniqueIdentifier>{893c7930-8c9f-4d01-8d42-788a364e5d97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Colors">
-      <UniqueIdentifier>{b12117d8-129c-4720-8d13-66629ae5d5f6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ShapeEditor">
       <UniqueIdentifier>{501cd7e1-268c-49a9-9404-b3c4ce3a136b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ShapeEditors">
       <UniqueIdentifier>{fa41e0ac-62b4-4e78-8f58-cb000a3ca495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Color">
+      <UniqueIdentifier>{3d0b6900-9bbb-478a-b62f-7b264c617cd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Color">
+      <UniqueIdentifier>{d9aa8cd7-b4a7-403a-b56d-0adf6565aeea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RubberBending">
+      <UniqueIdentifier>{fade5e78-af63-4e8f-bdcb-0ff337a3331d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +87,21 @@
     <ClInclude Include="AllShapesEditors.h">
       <Filter>Header Files\ShapeEditor</Filter>
     </ClInclude>
+    <ClInclude Include="colorEnums.h">
+      <Filter>Header Files\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="color.h">
+      <Filter>Header Files\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="RGBColor.h">
+      <Filter>Header Files\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="rubberBending.h">
+      <Filter>Header Files\RubberBending</Filter>
+    </ClInclude>
+    <ClInclude Include="rubberBandingEnums.h">
+      <Filter>Header Files\RubberBending</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pisyulka.cpp">
@@ -93,9 +114,6 @@
       <Filter>Source Files\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="shape.cpp">
-      <Filter>Source Files\Shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="shapeEditor.cpp">
       <Filter>Source Files\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="pointEditor.cpp">
@@ -112,6 +130,18 @@
     </ClCompile>
     <ClCompile Include="line.cpp">
       <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="color.cpp">
+      <Filter>Source Files\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangle.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="shapeEditor.cpp">
+      <Filter>Source Files\ShapeEditors</Filter>
+    </ClCompile>
+    <ClCompile Include="rubberBending.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,12 +3,11 @@
 #include "shapeEditor.h"
 #include "point.h"
 
+
 class PointEditor : public ShapeEditor
 {
-private:
-	PointShape pointShape;
+protected:
+	Shape* CreateShape(long x1, long y1, long x2, long y2) override;
 public:
 	PointEditor();
-	void OnLBtnDown(HWND hWnd) override;
-	void OnPaint(HWND hWnd) override;
 };

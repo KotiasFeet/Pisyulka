@@ -1,6 +1,7 @@
 #pragma once
 
 #include "shape.h"
+#include "color.h"
 
 class PointShape : public Shape
 {

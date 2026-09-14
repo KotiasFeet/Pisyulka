@@ -8,6 +8,12 @@
 #include "shapeEditor.h"
 ShapeEditor *pse = NULL;
 
+#include "rubberBending.h"
+Rubber rubberBending;
+
+#include "color.h"
+Color color;
+
 #define MAX_LOADSTRING 100
 
 // Global Variables:
@@ -21,6 +27,10 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
+void SetupDebugConsole();
+
+
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -30,6 +40,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
+
+    SetupDebugConsole();
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -143,6 +155,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_INITMENUPOPUP:
         if(pse) pse->OnInitMenuPopup(hWnd, wParam);
+        color.OnInitMenuPopup(hWnd, wParam);
+        rubberBending.OnInitMenuPopup(hWnd, wParam);
 		break;
 
 
@@ -176,8 +190,60 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
             }
 
-            case IDM_ABOUT:
+            /// Colors
+            // #### Fillings ####
+            case ID_FILLING_BLACK:
+            case ID_FILLING_WHITE:
+            case ID_FILLING_YELLOW:
+            case ID_FILLING_LIGHT:
+            case ID_FILLING_CYAN:
+            case ID_FILLING_PINK:
+            case ID_FILLING_ORANGE:
+            case ID_FILLING_LILAC: 
+            case ID_FILLING_TRANSPARENT: {
+                color.SetCurrentFillingID(wmId);
+                break;
+            }
+
+			// #### outlines ####
+            case ID_OUTLINE_BLACK:
+            case ID_OUTLINE_WHITE:
+            case ID_OUTLINE_YELLOW:
+            case ID_OUTLINE_LIGHT:
+            case ID_OUTLINE_CYAN:
+            case ID_OUTLINE_PINK:
+            case ID_OUTLINE_ORANGE:
+            case ID_OUTLINE_LILAC: 
+            case ID_OUTLINE_TRANSPARENT: {
+                color.SetCurrentOutlineID(wmId);
+                break;
+            }
+
+            case ID_RB_COLOR_BLACK:
+            case ID_RB_COLOR_RED:
+            case ID_RB_COLOR_BLUE: {
+                color.SetCurrentRubberBandingID(wmId);
+                break;
+            }
+
+            case ID_RUBBER_STYLE_SOLID: 
+            case ID_RUBBER_STYLE_DASH: 
+            case ID_RUBBER_STYLE_DOT:
+            case ID_RUBBER_STYLE_DASH_DOT: 
+            case ID_RUBBER_STYLE_DASH_DOT_DOT: 
+            {
+                Rubber::SetRubberStyle(wmId);
+                break;
+            }
+            
+            case ID_RUBBER_SHOW: {
+                Rubber::ToggleRubberShown();
+                break;
+            }
+
+            case ID_HELP_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                break;
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
@@ -209,10 +275,26 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
         {
+            ShellExecute(0, 0, L"https://youtu.be/dQw4w9WgXcQ?si=fN8eoUP0XnOnpCi_", 0, 0, SW_SHOW);
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
         }
         break;
     }
     return (INT_PTR)FALSE;
+}
+
+
+void SetupDebugConsole() {
+    // Create the console window
+    AllocConsole();
+
+    // Route standard C/C++ output to the new console
+    FILE* fp;
+    freopen_s(&fp, "CONOUT$", "w", stdout);
+    freopen_s(&fp, "CONOUT$", "w", stderr);
+    freopen_s(&fp, "CONIN$", "r", stdin);
+
+    // Now std::cout and printf will work normally
+    std::cout << "Debug console initialized!" << std::endl;
 }

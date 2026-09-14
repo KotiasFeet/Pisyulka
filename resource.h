@@ -2,9 +2,6 @@
 // Microsoft Visual C++ generated include file.
 // Used by Pisyulka.rc
 //
-
-#define MY_SHAPE_ARRAY_SIZE 121
-
 #define IDC_MYICON                      2
 #define IDD_PISYULKA_DIALOG             102
 #define IDS_APP_TITLE                   103
@@ -14,13 +11,12 @@
 #define IDI_PISYULKA                    107
 #define IDI_SMALL                       108
 #define IDC_PISYULKA                    109
+#define MY_SHAPE_ARRAY_SIZE             121
 #define IDR_MAINFRAME                   128
-
-#define ID_SHAPE_POINT                  32775 
+#define ID_SHAPE_POINT                  32775
 #define ID_SHAPE_LINE                   32776
 #define ID_SHAPE_RECTANGLE              32777
 #define ID_SHAPE_ELLIPSE                32778
-
 #define ID_COLOR_FILLING                32779
 #define ID_COLOR_OUTLINE                32780
 #define ID_HELP_ABOUT                   32781
@@ -34,14 +30,35 @@
 #define ID_RB_COLOR_BLACK               32789
 #define ID_RB_COLOR_RED                 32790
 #define ID_RB_COLOR_BLUE                32791
-#define ID_RUBBER_SOLID                 32792
-#define ID_FILLING_WHITE                32793
-#define ID_FILLING_YELLOW               32794
-#define ID_FILLING_LIGHT                32795
-#define ID_FILLING_CYAN                 32796
-#define ID_FILLING_PINK                 32797
-#define ID_FILLING_ORANGE               32798
-#define ID_FILLING_LILAC                32799
+#define ID_RB_SOLID                     32792
+#define ID_FILLING_BLACK                32793
+#define ID_FILLING_WHITE                32794
+#define ID_FILLING_YELLOW               32795
+#define ID_FILLING_LIGHT                32796
+#define ID_FILLING_CYAN                 32797
+#define ID_FILLING_PINK                 32798
+#define ID_FILLING_ORANGE               32799
+#define ID_FILLING_LILAC                32800
+#define ID_FILLING_TRANSPARENT          32801
+#define ID_OUTLINE_BLACK                32802
+#define ID_OUTLINE_WHITE                32803
+#define ID_OUTLINE_YELLOW               32804
+#define ID_OUTLINE_LIGHT                32805
+#define ID_OUTLINE_CYAN                 32806
+#define ID_OUTLINE_PINK                 32807
+#define ID_OUTLINE_ORANGE               32808
+#define ID_OUTLINE_LILAC                32809
+#define ID_OUTLINE_TRANSPARENT          32810
+#define ID__ORANGE                      32811
+#define ID_RUBBER_SHOW                  32815
+#define ID_RB_STYLE                     32816
+
+#define ID_RUBBER_STYLE_SOLID           32817
+#define ID_RUBBER_STYLE_DASH            32818
+#define ID_RUBBER_STYLE_DOT             32819
+#define ID_RUBBER_STYLE_DASH_DOT        32820
+#define ID_RUBBER_STYLE_DASH_DOT_DOT    32821
+
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -50,7 +67,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        129
-#define _APS_NEXT_COMMAND_VALUE         32802
+#define _APS_NEXT_COMMAND_VALUE         32829
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
