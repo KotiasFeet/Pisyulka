@@ -9,7 +9,9 @@ class ShapeEditor : public Editor
 {
 protected:
     int currentShapeID_ = ID_SHAPE_POINT;
-    static Shape* pcshape_[MY_SHAPE_ARRAY_SIZE];
+    static Shape** pcshape_;
+    static int currentCapacity_;
+    static int currentSize_;
 
     int _currentIndex = -1;
     int _startX = 0;

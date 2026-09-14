@@ -1,8 +1,8 @@
 #pragma once
 
-#include <windows.h>
-#include "colorEnums.h"
 #include "RGBColor.h"
+#include "colorEnums.h"
+#include <windows.h>
 
 
 class Color

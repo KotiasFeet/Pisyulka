@@ -1,6 +1,9 @@
 #include "ShapeEditor.h"
 
-Shape* ShapeEditor::pcshape_[MY_SHAPE_ARRAY_SIZE] = { nullptr };
+Shape** ShapeEditor::pcshape_ = new Shape * [MY_SHAPE_ARRAY_SIZE] {};
+int ShapeEditor::currentCapacity_ = MY_SHAPE_ARRAY_SIZE;
+int ShapeEditor::currentSize_ = MY_SHAPE_ARRAY_SIZE;
+
 
 void ShapeEditor::ClearAllShapes()
 {

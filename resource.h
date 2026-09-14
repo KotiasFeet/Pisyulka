@@ -11,7 +11,7 @@
 #define IDI_PISYULKA                    107
 #define IDI_SMALL                       108
 #define IDC_PISYULKA                    109
-#define MY_SHAPE_ARRAY_SIZE             121
+#define MY_SHAPE_ARRAY_SIZE             118
 #define IDR_MAINFRAME                   128
 #define ID_SHAPE_POINT                  32775
 #define ID_SHAPE_LINE                   32776
