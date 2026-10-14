@@ -26,7 +26,7 @@ void DrawRubberShape(HDC hdc, int shapeID, int x1, int y1, int x2, int y2)
 		LineTo(hdc, x2, y2);
 		break;
 	}
-	case ID_SHAPE_RECTANGLE: {
+	case ID_SHAPE_RECT: {
 		//Rectangle(hdc, std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2));
 		Rectangle(hdc, x1, y1, x2, y2);
 		break;

@@ -4,6 +4,10 @@
 #include "framework.h"
 #include "Pisyulka.h"
 
+#include "toolBarHandler.h"
+ToolBarHandler toolBarHandler;
+
+#include "shapesIconsBitmapIndexes.h"
 #include "AllShapesEditors.h"
 #include "shapeEditor.h"
 ShapeEditor *pse = NULL;
@@ -27,6 +31,7 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
+
 void SetupDebugConsole();
 
 
@@ -39,7 +44,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // TODO: Place code here.
+    INITCOMMONCONTROLSEX icex;
+    icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
+    icex.dwICC = ICC_BAR_CLASSES;
+    InitCommonControlsEx(&icex);
 
     SetupDebugConsole();
 
@@ -141,6 +149,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
 
+    case WM_CREATE:
+		toolBarHandler.OnCreate(hWnd, hInst);
+        break;
+    case WM_NOTIFY: 
+        toolBarHandler.OnNotify(lParam);
+		break;
+	case WM_SIZE:
+		toolBarHandler.OnSize(hWnd);
+		break;
+    
     case WM_LBUTTONDOWN:
         if(pse) pse->OnLBtnDown(hWnd);
         break;
@@ -177,7 +195,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 if (pse) pse->SetCurrentShapeID(wmId);
                 break;
             }
-			case ID_SHAPE_RECTANGLE: {
+			case ID_SHAPE_RECT: {
                 if (pse) delete pse;
                 pse = new RectangleEditor();
                 if (pse) pse->SetCurrentShapeID(wmId);
@@ -189,6 +207,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 if (pse) pse->SetCurrentShapeID(wmId);
                 break;
             }
+            case ID_SHAPE_OOLINE: {
+                if (pse) delete pse;
+                pse = new OOLineEditor();
+                if (pse) pse->SetCurrentShapeID(wmId);
+                break;
+            }
+            case ID_SHAPE_CUBE: {
+                if (pse) delete pse;
+                pse = new CubeEditor();
+                if (pse) pse->SetCurrentShapeID(wmId);
+                break;
+            }
+
 
             /// Colors
             // #### Fillings ####
@@ -219,13 +250,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
             }
 
+            // #### RUBBER-BENDING COLOR ####
             case ID_RB_COLOR_BLACK:
             case ID_RB_COLOR_RED:
             case ID_RB_COLOR_BLUE: {
                 color.SetCurrentRubberBandingID(wmId);
                 break;
             }
-
+            
+            // ### RUBBER-BENDING STYLE ####
             case ID_RUBBER_STYLE_SOLID: 
             case ID_RUBBER_STYLE_DASH: 
             case ID_RUBBER_STYLE_DOT:
@@ -263,6 +296,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
+
 // Message handler for about box.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -283,7 +317,6 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return (INT_PTR)FALSE;
 }
-
 
 void SetupDebugConsole() {
     // Create the console window

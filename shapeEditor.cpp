@@ -23,8 +23,8 @@ void ShapeEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 
 	CheckMenuRadioItem(
 		hSubMenu, 
-		ID_SHAPE_POINT,					// FIRST ID
-		ID_SHAPE_ELLIPSE,				// LAST ID
+		ID_SHAPE_POINT,						// FIRST ID
+		ID_SHAPE_CUBE,						// LAST ID
 		currentShapeID_, MF_BYCOMMAND	
 	);
 }

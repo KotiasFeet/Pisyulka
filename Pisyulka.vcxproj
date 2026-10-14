@@ -126,12 +126,16 @@
     <ClInclude Include="AllShapesEditors.h" />
     <ClInclude Include="color.h" />
     <ClInclude Include="colorEnums.h" />
+    <ClInclude Include="cube.h" />
+    <ClInclude Include="cubeEditor.h" />
     <ClInclude Include="editor.h" />
     <ClInclude Include="ellipse.h" />
     <ClInclude Include="ellipseEditor.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="line.h" />
     <ClInclude Include="lineEditor.h" />
+    <ClInclude Include="OOLine.h" />
+    <ClInclude Include="OOLineEditor.h" />
     <ClInclude Include="Pisyulka.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="pointEditor.h" />
@@ -143,14 +147,20 @@
     <ClInclude Include="rubberBending.h" />
     <ClInclude Include="shape.h" />
     <ClInclude Include="shapeEditor.h" />
+    <ClInclude Include="shapesIconsBitmapIndexes.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="toolBarHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="color.cpp" />
+    <ClCompile Include="cube.cpp" />
+    <ClCompile Include="cubeEditor.cpp" />
     <ClCompile Include="ellipse.cpp" />
     <ClCompile Include="ellipseEditor.cpp" />
     <ClCompile Include="line.cpp" />
     <ClCompile Include="lineEditor.cpp" />
+    <ClCompile Include="OOLine.cpp" />
+    <ClCompile Include="OOLineEditor.cpp" />
     <ClCompile Include="Pisyulka.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="pointEditor.cpp" />
@@ -159,16 +169,19 @@
     <ClCompile Include="rubberBending.cpp" />
     <ClCompile Include="shape.cpp" />
     <ClCompile Include="shapeEditor.cpp" />
+    <ClCompile Include="toolBarHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Pisyulka.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="shapes.bmp" />
     <Image Include="Pisyulka.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lab 2.docx" />
+    <None Include="lab 3.docx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

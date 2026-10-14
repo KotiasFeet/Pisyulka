@@ -2,7 +2,7 @@
 
 RectangleEditor::RectangleEditor() 
 {
-	currentShapeID_ = ID_SHAPE_RECTANGLE;
+	currentShapeID_ = ID_SHAPE_RECT;
 }
 
 Shape* RectangleEditor::CreateShape(long x1, long y1, long x2, long y2) 

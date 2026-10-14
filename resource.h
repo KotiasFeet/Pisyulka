@@ -11,12 +11,10 @@
 #define IDI_PISYULKA                    107
 #define IDI_SMALL                       108
 #define IDC_PISYULKA                    109
+#define IDB_SHAPES                      110
 #define MY_SHAPE_ARRAY_SIZE             118
 #define IDR_MAINFRAME                   128
-#define ID_SHAPE_POINT                  32775
-#define ID_SHAPE_LINE                   32776
-#define ID_SHAPE_RECTANGLE              32777
-#define ID_SHAPE_ELLIPSE                32778
+#define IDC_MY_TOOLBAR                  1000
 #define ID_COLOR_FILLING                32779
 #define ID_COLOR_OUTLINE                32780
 #define ID_HELP_ABOUT                   32781
@@ -52,13 +50,18 @@
 #define ID__ORANGE                      32811
 #define ID_RUBBER_SHOW                  32815
 #define ID_RB_STYLE                     32816
-
 #define ID_RUBBER_STYLE_SOLID           32817
 #define ID_RUBBER_STYLE_DASH            32818
 #define ID_RUBBER_STYLE_DOT             32819
 #define ID_RUBBER_STYLE_DASH_DOT        32820
 #define ID_RUBBER_STYLE_DASH_DOT_DOT    32821
-
+#define ID_SHAPE_POINT                  32829
+#define ID_SHAPE_LINE                   32830
+#define ID_SHAPE_RECT                   32831
+#define ID_SHAPE_ELLIPSE                32832
+#define ID_SHAPE_OOLINE                 32833
+#define ID_SHAPE_CUBE                   32834
+#define ID_FILLING                      32835
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -66,8 +69,8 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        129
-#define _APS_NEXT_COMMAND_VALUE         32829
+#define _APS_NEXT_RESOURCE_VALUE        130
+#define _APS_NEXT_COMMAND_VALUE         32836
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110
 #endif

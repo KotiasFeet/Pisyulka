@@ -1,8 +1,4 @@
 #include "line.h"
-#include "color.h"
-
-#include <windows.h>
-#include <iostream>
 
 void LineShape::Show(HDC hdc)
 {

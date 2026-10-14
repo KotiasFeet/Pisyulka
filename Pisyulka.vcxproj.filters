@@ -102,6 +102,24 @@
     <ClInclude Include="rubberBandingEnums.h">
       <Filter>Header Files\RubberBending</Filter>
     </ClInclude>
+    <ClInclude Include="OOLineEditor.h">
+      <Filter>Header Files\ShapeEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="OOLine.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="shapesIconsBitmapIndexes.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cubeEditor.h">
+      <Filter>Header Files\ShapeEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="cube.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="toolBarHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pisyulka.cpp">
@@ -143,6 +161,21 @@
     <ClCompile Include="rubberBending.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OOLineEditor.cpp">
+      <Filter>Source Files\ShapeEditors</Filter>
+    </ClCompile>
+    <ClCompile Include="OOLine.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="cube.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="cubeEditor.cpp">
+      <Filter>Source Files\ShapeEditors</Filter>
+    </ClCompile>
+    <ClCompile Include="toolBarHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Pisyulka.rc">
@@ -156,8 +189,12 @@
     <Image Include="Pisyulka.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="shapes.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="lab 2.docx" />
+    <None Include="lab 3.docx" />
   </ItemGroup>
 </Project>
