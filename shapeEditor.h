@@ -21,6 +21,8 @@ protected:
     virtual Shape* CreateShape(long x1, long y1, long x2, long y2) = 0;
 
 public:
+    ~ShapeEditor() = default;
+
     static void ClearAllShapes();
 
     void SetCurrentShapeID(int shapeID) { currentShapeID_ = shapeID; }

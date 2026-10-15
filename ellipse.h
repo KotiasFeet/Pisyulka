@@ -2,7 +2,7 @@
 
 #include "shape.h"
 
-class EllipseShape : public Shape
+class EllipseShape : public virtual Shape
 {
 public:
 	EllipseShape(long x1, long y1, long x2, long y2) { Set(x1, y1, x2, y2); };

@@ -44,6 +44,14 @@ void DrawRubberShape(HDC hdc, int shapeID, int x1, int y1, int x2, int y2)
 		LineTo(hdc, x2, y2 + 3);
 		break;
 	}
+	case ID_SHAPE_OOLINE: {
+		MoveToEx(hdc, x1, y1, NULL);
+		LineTo(hdc, x2, y2);
+
+		Ellipse(hdc, x1 - OOLINE_CIRCLE_RADIUS, y1 - OOLINE_CIRCLE_RADIUS, x1 + OOLINE_CIRCLE_RADIUS, y1 + OOLINE_CIRCLE_RADIUS);
+		Ellipse(hdc, x2 - OOLINE_CIRCLE_RADIUS, y2 - OOLINE_CIRCLE_RADIUS, x2 + OOLINE_CIRCLE_RADIUS, y2 + OOLINE_CIRCLE_RADIUS);
+		break;
+	}
 	default:
 		break;
 	}

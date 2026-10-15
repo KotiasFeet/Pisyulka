@@ -3,7 +3,7 @@
 #include "shape.h"
 #include "color.h"
 
-class PointShape : public Shape
+class PointShape : public virtual Shape
 {
 public:
 	PointShape(long x, long y) { Set(x, y, x, y); }

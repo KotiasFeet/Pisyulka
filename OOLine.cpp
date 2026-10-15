@@ -2,17 +2,26 @@
 
 void OOLineShape::Show(HDC hdc) {
 
-	RGBColor oc = GetOutlineColor();
-	RGBColor fc = GetFillingColor();
+    LineShape::Show(hdc);
 
-	HPEN hPen = CreatePen(PS_SOLID, 1, RGB(oc.r, oc.g, oc.b));
-	HPEN hOldPen = (HPEN)SelectObject(hdc, hPen);
+    long x1 = LineShape::GetX1();
+    long y1 = LineShape::GetY1();
+    long x2 = LineShape::GetX2();
+    long y2 = LineShape::GetY2();
 
-	
-	MoveToEx(hdc, x1_, y1_, NULL);
-	LineTo(hdc, x2_, y2_);
+    const int r = OOLINE_CIRCLE_RADIUS;
 
-	SelectObject(hdc, hOldPen);
-	DeleteObject(hPen);
+    EllipseShape cir1(x1 - r, y1 - r, x1 + r, y1 + r);
+    EllipseShape cir2(x2 - r, y2 - r, x2 + r, y2 + r);
 
+    RGBColor oc = LineShape::GetOutlineColor();
+    RGBColor fc = LineShape::GetFillingColor();
+
+    cir1.SetFillingColor(fc);
+    cir2.SetFillingColor(fc);
+    cir1.SetOutlineColor(oc);
+    cir2.SetOutlineColor(oc);
+
+    cir1.Show(hdc);
+    cir2.Show(hdc);
 }

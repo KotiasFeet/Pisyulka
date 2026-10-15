@@ -180,8 +180,9 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="lab 2.docx" />
-    <None Include="lab 3.docx" />
+    <None Include="Laba 2.docx" />
+    <None Include="Laba 3.docx" />
+    <None Include="Laba 4.docx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,7 +2,7 @@
 
 OOLineEditor::OOLineEditor()
 {
-	currentShapeID_ = ID_SHAPE_LINE;
+	currentShapeID_ = ID_SHAPE_OOLINE;
 }
 
 Shape* OOLineEditor::CreateShape(long x1, long y1, long x2, long y2)

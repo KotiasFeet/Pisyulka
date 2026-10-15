@@ -194,7 +194,8 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="lab 2.docx" />
-    <None Include="lab 3.docx" />
+    <None Include="Laba 2.docx" />
+    <None Include="Laba 3.docx" />
+    <None Include="Laba 4.docx" />
   </ItemGroup>
 </Project>
