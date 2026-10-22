@@ -7,7 +7,7 @@
 #include <commctrl.h>
 #pragma comment(lib, "comctl32.lib")
 
-#define TOOLBAR_BUTTONS 6
+#define TOOLBAR_MAX_BUTTONS 6
 
 
 class ToolBarHandler

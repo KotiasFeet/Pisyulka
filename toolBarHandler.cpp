@@ -22,12 +22,12 @@ void ToolBarHandler::OnCreate(HWND hWnd, HINSTANCE hInst) {
     // START OF Icons for buttons shit
     int newIconSize = 32;
 
-    HIMAGELIST hImageList = ImageList_Create(newIconSize, newIconSize, ILC_COLOR32 | ILC_MASK, TOOLBAR_BUTTONS, 0);
+    HIMAGELIST hImageList = ImageList_Create(newIconSize, newIconSize, ILC_COLOR32 | ILC_MASK, TOOLBAR_MAX_BUTTONS, 0);
     HBITMAP hbmShapes = (HBITMAP)LoadImage(
         hInst,
         MAKEINTRESOURCE(IDB_SHAPES),
         IMAGE_BITMAP,
-        newIconSize * TOOLBAR_BUTTONS,  // Stretched total width
+        newIconSize * TOOLBAR_MAX_BUTTONS,  // Stretched total width
         newIconSize,                    // Stretched height
         LR_CREATEDIBSECTION             // Required for scaling
     );
@@ -39,7 +39,7 @@ void ToolBarHandler::OnCreate(HWND hWnd, HINSTANCE hInst) {
 
     // END OF Icons for buttons shit
 
-    TBBUTTON tbb[TOOLBAR_BUTTONS];
+    TBBUTTON tbb[TOOLBAR_MAX_BUTTONS];
     ZeroMemory(tbb, sizeof(tbb));
 
     // Addind buttons to the toolbar
@@ -56,6 +56,14 @@ void ToolBarHandler::OnCreate(HWND hWnd, HINSTANCE hInst) {
     SendMessage(hwndToolBar, TB_AUTOSIZE, 0, 0);
 }
 
+
+/// <summary>
+/// Registers a new button on a Toolbar
+/// </summary>
+/// <param name="tbb">- Toolbar bnuttons array</param> 
+/// <param name="index">- location serial number on the Toolbar</param>
+/// <param name="iBitmap">- Icon ID</param>
+/// <param name="idCommand">- Callback command</param>
 void ToolBarHandler::registerTBButton(TBBUTTON* tbb, int index, int iBitmap, int idCommand) {
     tbb[index].iBitmap = iBitmap;
     tbb[index].fsState = TBSTATE_ENABLED;

@@ -3,6 +3,12 @@
 #include <windows.h>
 #include "RGBColor.h"
 
+
+/// <summary>
+/// long x1, y1, x2, y2 - coordinates of the shape
+/// RGBColor fillingColor_ - color of the shape filling
+/// RGBColor outlineColor_ - color of the shape outline
+/// </summary>
 class Shape
 {
 protected:

@@ -1,14 +1,21 @@
 #pragma once
 
+//#include <unordered_map>
+
 #include "editor.h"
 #include "shape.h"
 #include "resource.h"
 #include "rubberBending.h"
 
+#include "table.h"
+
 class ShapeEditor : public Editor
 {
 protected:
     int currentShapeID_ = ID_SHAPE_POINT;
+
+	//static std::unordered_map<long, int> tableIDtoCurIndexMap_;
+    static long shapeIDs_[MY_SHAPE_ARRAY_SIZE];
 
     static Shape** pcshape_;
     static int currentCapacity_;
@@ -23,12 +30,16 @@ protected:
 public:
     ~ShapeEditor() = default;
 
+	int RemoveElementByID(long id);
     static void ClearAllShapes();
 
     void SetCurrentShapeID(int shapeID) { currentShapeID_ = shapeID; }
     bool GetMousePos(HWND hWnd, POINT& pt);
 
     virtual void SaveShape(HWND hWnd);
+
+    ShapeEditor* GetCorrectEditorFromShapeType(ShapeType type);
+    void SetPCShape(std::vector<ShapeRecord> table);
 
     void OnLBtnDown(HWND hWnd) override;
     void OnLBtnUp(HWND hWnd) override;

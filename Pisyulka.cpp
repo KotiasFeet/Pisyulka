@@ -7,6 +7,9 @@
 #include "toolBarHandler.h"
 ToolBarHandler toolBarHandler;
 
+#include "table.h"
+Table* table = Table::GetInstance();
+
 #include "shapesIconsBitmapIndexes.h"
 #include "AllShapesEditors.h"
 #include "shapeEditor.h"
@@ -18,7 +21,10 @@ Rubber rubberBending;
 #include "color.h"
 Color color;
 
-#define MAX_LOADSTRING 100
+#include "CSVHandler.h"
+#include "TableWindow.h"
+
+#define MAX_LOADSTRING 118
 
 // Global Variables:
 HINSTANCE hInst;                                // current instance
@@ -33,7 +39,6 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 
 void SetupDebugConsole();
-
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -176,8 +181,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         color.OnInitMenuPopup(hWnd, wParam);
         rubberBending.OnInitMenuPopup(hWnd, wParam);
 		break;
-
-
     case WM_COMMAND: {
             int wmId = LOWORD(wParam);
             // Parse the menu selections:
@@ -273,10 +276,41 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 Rubber::ToggleRubberShown();
                 break;
             }
+            
+
+
+            case ID_EDITOR_VIEW:
+                OpenModelessTableWindow(hWnd);
+				break;
+            case ID_REFRESH_TABLE_VIEW: {
+                extern HWND hModelessWindow;
+                if (hModelessWindow) {
+                    SendMessage(hModelessWindow, WM_REFRESH_TABLE, 0, 0);
+                }
+                break;
+            }
+
+
+            case ID_EDITOR_IMPORT: {
+                char szFileName[MAX_PATH];
+                if (CSVManager::OpenCSVFileDialog(hWnd, szFileName, MAX_PATH)) {
+                    CSVManager::ParseCSVFile(szFileName, pse);
+                    
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
+                }
+                break;
+            }
+            case ID_EXPORT_CSV: {
+                char szFileName[MAX_PATH];
+                if (CSVManager::SaveCSVFileDialog(hWnd, szFileName, MAX_PATH))
+                    CSVManager::ExportTableToCSV(szFileName);
+                break;
+            }
+
 
             case ID_HELP_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
@@ -286,11 +320,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
-    case WM_DESTROY:
-		ShapeEditor::ClearAllShapes();
+    case WM_DESTROY: {
+        ShapeEditor::ClearAllShapes();
         PostQuitMessage(0);
         break;
-    default:
+    }
+    default:    
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
     return 0;

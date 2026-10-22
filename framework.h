@@ -16,3 +16,7 @@
 #include <tchar.h>
 #include <iostream>
 #include <vector>
+
+#include <fstream>
+#include <commdlg.h>
+#include <sstream>

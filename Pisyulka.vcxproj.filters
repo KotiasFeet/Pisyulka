@@ -37,6 +37,12 @@
     <Filter Include="Header Files\RubberBending">
       <UniqueIdentifier>{fade5e78-af63-4e8f-bdcb-0ff337a3331d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Table">
+      <UniqueIdentifier>{48e50ea9-991d-4154-98c6-e7d687e972c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Table">
+      <UniqueIdentifier>{7ecf5e93-0f61-4b91-99ac-9d0f70765cde}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -120,6 +126,18 @@
     <ClInclude Include="toolBarHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="table.h">
+      <Filter>Header Files\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="tableType.h">
+      <Filter>Header Files\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="TableWindow.h">
+      <Filter>Header Files\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="CSVHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pisyulka.cpp">
@@ -174,6 +192,15 @@
       <Filter>Source Files\ShapeEditors</Filter>
     </ClCompile>
     <ClCompile Include="toolBarHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="table.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="TableWindow.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="CSVHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

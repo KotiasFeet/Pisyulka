@@ -3,7 +3,7 @@
 // Used by Pisyulka.rc
 //
 #define IDC_MYICON                      2
-#define OOLINE_CIRCLE_RADIUS			15
+#define OOLINE_CIRCLE_RADIUS            15
 #define IDD_PISYULKA_DIALOG             102
 #define IDS_APP_TITLE                   103
 #define IDD_ABOUTBOX                    103
@@ -16,6 +16,7 @@
 #define MY_SHAPE_ARRAY_SIZE             118
 #define IDR_MAINFRAME                   128
 #define IDC_MY_TOOLBAR                  1000
+#define ID_REFRESH_TABLE_VIEW           9000
 #define ID_COLOR_FILLING                32779
 #define ID_COLOR_OUTLINE                32780
 #define ID_HELP_ABOUT                   32781
@@ -63,6 +64,10 @@
 #define ID_SHAPE_OOLINE                 32833
 #define ID_SHAPE_CUBE                   32834
 #define ID_FILLING                      32835
+#define ID_EDITOR_VIEW                  32836
+#define ID_EDITOR_EXPORT                32837
+#define ID_EDITOR_IMPORT                32838
+#define ID_EXPORT_CSV                   32839
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -71,7 +76,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        130
-#define _APS_NEXT_COMMAND_VALUE         32836
+#define _APS_NEXT_COMMAND_VALUE         32840
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110
 #endif

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "colorEnums.h"
+#include "tableType.h"
 
 class RGBColor
 {
@@ -9,7 +10,9 @@ public:
 	int g;
 	int b;
 	constexpr RGBColor(int red, int green, int blue) : r(red), g(green), b(blue) {}
-    
+    bool operator==(const RGBColor& other) const {
+        return r == other.r && g == other.g && b == other.b;
+    }
 };
 
 namespace Palette {
@@ -69,5 +72,33 @@ constexpr RGBColor GetColor(COLOR_RB color)
     case COLOR_RB::RED:   return Palette::Red;
     case COLOR_RB::BLUE:  return Palette::Blue;
     default:              return Palette::Black;
+    }
+}
+
+inline COLOR GetColorFromRGB(RGBColor col) {
+    if (col == Palette::Black) return COLOR::BLACK;
+    if (col == Palette::White) return COLOR::WHITE;
+    if (col == Palette::Yellow) return COLOR::YELLOW;
+    if (col == Palette::LightGreen) return COLOR::LIGHT_GREEN;
+    if (col == Palette::Cyan) return COLOR::CYAN;
+    if (col == Palette::Pink) return COLOR::PINK;
+    if (col == Palette::Orange) return COLOR::ORANGE;
+    if (col == Palette::Lilac) return COLOR::LILAC;
+    if (col == Palette::Transparent) return COLOR::CTRANSPARENT;
+    return COLOR::BLACK;
+}
+
+inline RGBColor GetRGBFromColor(COLOR col) {
+    switch (col) {
+    case COLOR::BLACK: return Palette::Black;
+    case COLOR::WHITE: return Palette::White;
+    case COLOR::YELLOW: return Palette::Yellow;
+    case COLOR::LIGHT_GREEN: return Palette::LightGreen;
+    case COLOR::CYAN: return Palette::Cyan;
+    case COLOR::PINK: return Palette::Pink;
+    case COLOR::ORANGE: return Palette::Orange;
+    case COLOR::LILAC: return Palette::Lilac;
+    case COLOR::CTRANSPARENT: return Palette::Transparent;
+    default: return Palette::Black;
     }
 }
