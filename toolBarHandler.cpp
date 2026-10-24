@@ -43,7 +43,7 @@ void ToolBarHandler::OnCreate(HWND hWnd, HINSTANCE hInst) {
     ZeroMemory(tbb, sizeof(tbb));
 
     // Addind buttons to the toolbar
-    registerTBButton(tbb, 0, IDI_ICON_POINT, ID_SHAPE_POINT);
+    registerTBButton(tbb, 0, IDI_ICON_POINT, ID_SHAPE_POINT, true);
     registerTBButton(tbb, 1, IDI_ICON_LINE, ID_SHAPE_LINE);
     registerTBButton(tbb, 2, IDI_ICON_RECT, ID_SHAPE_RECT);
     registerTBButton(tbb, 3, IDI_ICON_ELLIPSE, ID_SHAPE_ELLIPSE);
@@ -64,11 +64,18 @@ void ToolBarHandler::OnCreate(HWND hWnd, HINSTANCE hInst) {
 /// <param name="index">- location serial number on the Toolbar</param>
 /// <param name="iBitmap">- Icon ID</param>
 /// <param name="idCommand">- Callback command</param>
-void ToolBarHandler::registerTBButton(TBBUTTON* tbb, int index, int iBitmap, int idCommand) {
+void ToolBarHandler::registerTBButton(TBBUTTON* tbb, int index, int iBitmap, int idCommand, bool toggled) {
     tbb[index].iBitmap = iBitmap;
+
     tbb[index].fsState = TBSTATE_ENABLED;
+    if (toggled) {
+        tbb[index].fsState |= TBSTATE_CHECKED;
+    }
+
     tbb[index].fsStyle = TBSTYLE_BUTTON | TBSTYLE_CHECKGROUP;
     tbb[index].idCommand = idCommand;
+    tbb[index].iString = 0;
+    tbb[index].dwData = 0;
 }
 
 void ToolBarHandler::OnSize(HWND hWnd)

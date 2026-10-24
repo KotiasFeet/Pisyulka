@@ -13,7 +13,7 @@ Table* table = Table::GetInstance();
 #include "shapesIconsBitmapIndexes.h"
 #include "AllShapesEditors.h"
 #include "shapeEditor.h"
-ShapeEditor *pse = NULL;
+ShapeEditor *pse = new PointEditor();
 
 #include "rubberBending.h"
 Rubber rubberBending;

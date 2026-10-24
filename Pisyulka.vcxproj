@@ -187,6 +187,7 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Laba 5.docx" />
     <None Include="Laba 2.docx" />
     <None Include="Laba 3.docx" />
     <None Include="Laba 4.docx" />

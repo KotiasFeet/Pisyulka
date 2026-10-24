@@ -14,7 +14,7 @@ class ToolBarHandler
 {
 private:
 	HWND hwndToolBar;
-	void registerTBButton(TBBUTTON* tbb, int index, int iBitmap, int idCommand);
+	void registerTBButton(TBBUTTON* tbb, int index, int iBitmap, int idCommand, bool toggled = false);
 
 public:
 	ToolBarHandler();
