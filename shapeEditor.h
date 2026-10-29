@@ -7,10 +7,17 @@
 #include "resource.h"
 #include "rubberBending.h"
 
-#include "table.h"
+#include "tableType.h"
+
+using AddItemToTableCallback = long (*)(ShapeType type, long startX, long startY, long endX, long endY, COLOR outlineColor, COLOR fillColor);
+using UpdateItemTableCallback = bool (*)(long id, long startX, long startY, long endX, long endY);
 
 class ShapeEditor : public Editor
 {
+private:
+    AddItemToTableCallback _onAddItem = nullptr;
+    UpdateItemTableCallback _onUpdateItem = nullptr;
+
 protected:
     int currentShapeID_ = ID_SHAPE_POINT;
 
@@ -30,6 +37,9 @@ protected:
 public:
     ~ShapeEditor() = default;
 
+    void SetAddCallback(AddItemToTableCallback callback) { _onAddItem = callback; }
+    void SetUpdateCallback(UpdateItemTableCallback callback) { _onUpdateItem = callback; }
+
 	int RemoveElementByID(long id);
     static void ClearAllShapes();
 
@@ -40,6 +50,8 @@ public:
 
     ShapeEditor* GetCorrectEditorFromShapeType(ShapeType type);
     void SetPCShape(std::vector<ShapeRecord> table);
+
+    void Highlight(long id);
 
     void OnLBtnDown(HWND hWnd) override;
     void OnLBtnUp(HWND hWnd) override;

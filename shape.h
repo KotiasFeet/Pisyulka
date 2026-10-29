@@ -29,4 +29,8 @@ public:
 	void SetOutlineColor(RGBColor c) { outlineColor_ = c; }
 	RGBColor GetOutlineColor() const { return outlineColor_; }
 
+	long GetX1() const { return x1_; }
+	long GetY1() const { return y1_; }
+	long GetX2() const { return x2_; }
+	long GetY2() const { return y2_; }
 };
