@@ -2,6 +2,23 @@
 
 HWND hModelessWindow = NULL;
 
+ShapeEditorRemoveByIdCallback removeByIdCallback = nullptr;
+void SetShapeEditorRemoveByIdCallback(ShapeEditorRemoveByIdCallback callback) {
+    removeByIdCallback = callback;
+}
+
+ShapeEditorHighlightByIdCallback highlightByIdCallback = nullptr;
+void SetShapeEditorHighlightByIdCallback(ShapeEditorHighlightByIdCallback callback) {
+    highlightByIdCallback = callback;
+}
+
+ShapeEditorUnhighlightUnselectedByIdCallback unhighlightByIdCallback = nullptr;
+void SetShapeEditorUnhighlightUnselectedByIdCallback(ShapeEditorUnhighlightUnselectedByIdCallback callback) {
+    unhighlightByIdCallback = callback;
+}
+
+
+
 void AddColumn(HWND hListView, int index, const wchar_t* text, int width) {
     LVCOLUMN lvc = { 0 };
     lvc.mask = LVCF_TEXT | LVCF_WIDTH | LVCF_SUBITEM;
@@ -69,6 +86,81 @@ LRESULT CALLBACK ModelessWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 
         // Load data from the singleton immediately upon creation
         RefreshTableData(hListView);
+        break;
+    }
+    case WM_NOTIFY: {
+        LPNMHDR lpnmhdr = (LPNMHDR)lParam;
+        if (lpnmhdr->hwndFrom == hListView) {
+            switch (lpnmhdr->code) {
+            case LVN_KEYDOWN:{
+                LPNMLVKEYDOWN pnkd = (LPNMLVKEYDOWN)lParam;
+
+                if (pnkd->wVKey == VK_DELETE) {
+                    Table* table = Table::GetInstance();
+                    bool itemDeleted = false;
+
+                    int iPos = ListView_GetNextItem(hListView, -1, LVNI_SELECTED);
+                    while (iPos != -1) {
+                        LVITEM lvi = { 0 };
+                        lvi.iItem = iPos;
+                        lvi.mask = LVIF_PARAM;
+
+                        if (ListView_GetItem(hListView, &lvi)) {
+                            long id = (long)lvi.lParam;
+
+							unhighlightByIdCallback(id);
+
+                            table->RemoveById(id);
+                            if (removeByIdCallback) {
+                                removeByIdCallback(id);
+                            }
+                            itemDeleted = true;
+                        }
+                        iPos = ListView_GetNextItem(hListView, iPos, LVNI_SELECTED);
+                    }
+
+                    if (itemDeleted) {
+                        std::cout << "Selected item(s) deleted from the table." << std::endl;
+                        RefreshTableData(hListView);
+                        InvalidateRect(hwnd, NULL, TRUE);
+                    }
+                }
+                break;
+            }
+            
+            case LVN_ITEMCHANGED: {
+                LPNMLISTVIEW pnmv = (LPNMLISTVIEW)lParam;
+
+                // Hilight the selected row
+                if ((pnmv->uChanged & LVIF_STATE) &&
+                    (pnmv->uNewState & LVIS_SELECTED) &&
+                    !(pnmv->uOldState & LVIS_SELECTED)) {
+
+                    int rowIndex = pnmv->iItem;
+                    long id = (long)pnmv->lParam;
+
+                    //std::cout << "Row " << rowIndex << " was just selected. ID: " << id << std::endl; 
+                    highlightByIdCallback(id);
+                }
+
+				// Unhilight the deselected row
+                if ((pnmv->uOldState & LVIS_SELECTED) &&
+                    !(pnmv->uNewState & LVIS_SELECTED)) {
+                    
+                    int unselectedRow = pnmv->iItem;
+                    long id = (long)pnmv->lParam;
+
+					unhighlightByIdCallback(id);
+
+                    std::cout << "Row " << unselectedRow << " was just deselected. ID: " << id << std::endl; 
+                }
+                
+                break;
+            }
+            }
+        }
+
+
         break;
     }
     case WM_REFRESH_TABLE: {

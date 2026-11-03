@@ -71,10 +71,16 @@ void ShapeEditor::SaveShape(HWND hWnd)
 			_currentIndex = i;
 
 			ShapeType type = GetShapeTypeFromID(currentShapeID_);
-			long id = Table::GetInstance()
-				->Add(type, _startX, _startY, _startX, _startY
-						, GetColorFromRGB(color.GetCurrentOutlineColor())
-						, GetColorFromRGB(color.GetCurrentFillingColor()));
+			long id = -1;
+			if (_onAddItem) {
+				id = _onAddItem(
+					type,
+					_startX, _startY, 
+					_startX, _startY,
+					GetColorFromRGB(color.GetCurrentOutlineColor()),
+					GetColorFromRGB(color.GetCurrentFillingColor())
+				);
+			}
 			//tableIDtoCurIndexMap_[_currentIndex] = id;
 			shapeIDs_[_currentIndex] = id;
 			SendMessage(hWnd, WM_COMMAND, ID_REFRESH_TABLE_VIEW, 0);
@@ -128,6 +134,49 @@ void ShapeEditor::SetPCShape(std::vector<ShapeRecord> table) {
 	}
 }
 
+void ShapeEditor::Unhighlight(long id) {
+	if (_selectedShapeId == id) {
+		_selectedShapeId = -1;
+	}
+}
+
+void ShapeEditor::Highlight(long id) {
+	_selectedShapeId = id;
+}
+
+void ShapeEditor::ShowHighlight(HWND hWnd) {
+	if (_selectedShapeId == -1) return;
+
+	long id = _selectedShapeId;
+	std::cout << "highlighting shape id " << id << '\n';
+	long x1 = pcshape_[id]->GetX1() - 10;
+	long y1 = pcshape_[id]->GetY1() - 10;
+	long x2 = pcshape_[id]->GetX2() + 10;
+	long y2 = pcshape_[id]->GetY2() + 10;
+
+	std::cout << "Shape ID " << id << " is Highlight at {" << x1 << ", " << y1 << ", " << x2 << ", " << y2 << "}\n";
+
+	HDC hdc = GetDC(hWnd);
+
+	int penStyle = PS_DOT;
+
+	HPEN hPen = CreatePen(penStyle, 1, RGB(255, 0, 0));
+	HPEN oldPen = (HPEN)SelectObject(hdc, hPen);
+	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, GetStockObject(NULL_BRUSH));
+
+	int oldROP = SetROP2(hdc, R2_NOTXORPEN);
+
+	Rectangle(hdc, x1, y1, x2, y2);
+
+	SetROP2(hdc, oldROP);
+	SelectObject(hdc, oldPen);
+	SelectObject(hdc, oldBrush);
+
+	DeleteObject(hPen);
+
+	//ReleaseDC(hWnd, hdc);
+}
+
 void ShapeEditor::OnLBtnDown(HWND hWnd) {
 	POINT pt;
 	if (!GetMousePos(hWnd, pt)) return;
@@ -158,7 +207,11 @@ void ShapeEditor::OnLBtnUp(HWND hWnd) {
 		//auto it = tableIDtoCurIndexMap_.find(_currentIndex);
 		//long id = it->second;
 		long id = shapeIDs_[_currentIndex];
-		Table::GetInstance()->UpdateCoordsByID(id, _startX, _startY, pt.x, pt.y);
+
+		if(_onUpdateItem) {
+			_onUpdateItem(id, _startX, _startY, pt.x, pt.y);
+		}
+
 		SendMessage(hWnd, WM_COMMAND, ID_REFRESH_TABLE_VIEW, 0);
 	}
 
@@ -185,10 +238,14 @@ void ShapeEditor::OnMouseMove(HWND hWnd) {
 void ShapeEditor::OnPaint(HWND hWnd) {
 	PAINTSTRUCT ps;
 	HDC hdc = BeginPaint(hWnd, &ps);
+	
 	for (int i = 0; i < MY_SHAPE_ARRAY_SIZE; i++) {
 		if (pcshape_[i]) {
 			pcshape_[i]->Show(hdc);
 		}
 	}
+	
+	ShowHighlight(hWnd);
+	
 	EndPaint(hWnd, &ps);
 }

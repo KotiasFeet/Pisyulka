@@ -1,5 +1,8 @@
 #include "CSVHandler.h"
 
+TableGetSizeCallback CSVManager::_getTableSize = nullptr;
+TableGetAtCallback CSVManager::_getTableAt = nullptr;
+TableSetTable CSVManager::_setTable = nullptr;
 
 std::string WideToUTF8(const wchar_t* wstr) {
     if (!wstr || *wstr == L'\0') return "";
@@ -49,8 +52,6 @@ bool CSVManager::SaveCSVFileDialog(HWND hwnd, char* szFileName, DWORD nMaxFile) 
 }
 
 void CSVManager::ExportTableToCSV(const char* filepath) {
-    Table* table = Table::GetInstance();
-
     //std::string filename = "output.csv";
 
     std::ofstream file(filepath);
@@ -61,9 +62,14 @@ void CSVManager::ExportTableToCSV(const char* filepath) {
 
     file << "ID,Type,X1,Y1,X2,Y2,Outline,Filling\n";
 
-    for (size_t i = 0; i < table->Size(); ++i) {
-        const ShapeRecord& rec = table->GetAt(i);
-		PopulateFileLineWithCSVData(file, rec);
+    if (_getTableSize) {
+        size_t tableSize = _getTableSize();
+        for (size_t i = 0; i < tableSize; ++i) {
+            if (_getTableAt) {
+                const ShapeRecord& rec = _getTableAt(i);
+                PopulateFileLineWithCSVData(file, rec);
+            }
+		}
     }
 
     file.close();
@@ -136,7 +142,10 @@ void CSVManager::ParseCSVFile(const char* filepath, ShapeEditor* pse){
     }
 
 	// seting Table instance with the new records and updating ShapeEditor
-    Table::GetInstance()->SetTable(_records);
+    //Table::GetInstance()->SetTable(_records);
+    if (_setTable) {
+		_setTable(_records);
+    }
 	pse->SetPCShape(_records);
 
     file.close();

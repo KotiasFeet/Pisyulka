@@ -152,6 +152,49 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	// Set the callback for adding items to the table
+    pse->SetAddCallback([](ShapeType type, long x1, long y1, long x2, long y2, COLOR outColor, COLOR fillColor) -> long {
+        return Table::GetInstance()->Add(type, x1, y1, x2, y2, outColor, fillColor);
+    });
+	// Set the callback for updating items in the table
+    pse->SetUpdateCallback([](long id, long x1, long y1, long x2, long y2) -> bool {
+        return Table::GetInstance()->UpdateCoordsByID(id, x1, y1, x2, y2);
+    });
+
+    SetShapeEditorRemoveByIdCallback([hWnd](long id) -> void {
+		pse->RemoveElementByID(id);
+        InvalidateRect(hWnd, NULL, TRUE);
+    });
+
+    SetShapeEditorHighlightByIdCallback([hWnd](long id) -> void {
+        pse->Highlight(id);
+        //std::cout << "highlighting shape id " << id << '\n';
+        InvalidateRect(hWnd, NULL, TRUE);
+        UpdateWindow(hWnd);
+    });
+
+    SetShapeEditorUnhighlightUnselectedByIdCallback([hWnd](long id) -> void {
+        pse->Unhighlight(id);
+        InvalidateRect(hWnd, NULL, TRUE);
+		UpdateWindow(hWnd);
+    });
+
+    CSVManager::SetGetTableSizeCallback([]() -> size_t {
+        return Table::GetInstance()->Size();
+	});
+
+    CSVManager::SetGetTableAtCallback([](size_t index) -> const ShapeRecord& {
+        return Table::GetInstance()->GetAt(index);
+    });
+
+    CSVManager::SetSetTableCallback([](const std::vector<ShapeRecord>& rec) {
+        Table::GetInstance()->SetTable(rec);
+    });
+
+    
+
+
+
     switch (message) {
 
     case WM_CREATE:
@@ -175,6 +218,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_PAINT:
         if(pse) pse->OnPaint(hWnd);
+        //pse->Highlight(id);
         break;
     case WM_INITMENUPOPUP:
         if(pse) pse->OnInitMenuPopup(hWnd, wParam);

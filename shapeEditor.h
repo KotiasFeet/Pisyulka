@@ -17,7 +17,7 @@ class ShapeEditor : public Editor
 private:
     AddItemToTableCallback _onAddItem = nullptr;
     UpdateItemTableCallback _onUpdateItem = nullptr;
-
+    long _selectedShapeId = -1;
 protected:
     int currentShapeID_ = ID_SHAPE_POINT;
 
@@ -45,13 +45,16 @@ public:
 
     void SetCurrentShapeID(int shapeID) { currentShapeID_ = shapeID; }
     bool GetMousePos(HWND hWnd, POINT& pt);
+    long GetSelectedToHighlightID() const { return _selectedShapeId; }
 
     virtual void SaveShape(HWND hWnd);
 
     ShapeEditor* GetCorrectEditorFromShapeType(ShapeType type);
     void SetPCShape(std::vector<ShapeRecord> table);
 
+	void Unhighlight(long id);
     void Highlight(long id);
+    void ShowHighlight(HWND hWnd);
 
     void OnLBtnDown(HWND hWnd) override;
     void OnLBtnUp(HWND hWnd) override;
